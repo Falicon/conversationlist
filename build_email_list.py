@@ -13,6 +13,8 @@ ignores = [
   'admin','no-reply','noreply',
   'service','notifications'
 ]
+# the address fields you want to grab emails from
+address_keys = ['to','cc','bcc','from']
 
 ############################################
 ### Script 
@@ -30,41 +32,30 @@ for account in accounts:
     messages = account.get_messages(limit=100, offset=offset)
     added = 0
     for message in messages:
-      try:
-        tos = message.addresses['to']
-        for to_user in tos:
-          email = to_user['email']
-          skip = False
-          for ignore in ignores:
-            if email.find(ignore) > -1:
-              skip = True
-          if not skip:
-            if email not in emails.keys():
-              added += 1
-              try:
-                emails[email] = {'name':to_user['name'],'count':1}
-              except:
-                emails[email] = {'name':'','count':1}
-            else:
-              emails[email]['count'] += 1
-
-        from_user = message.addresses['from']
-        email = from_user['email']
-        skip = False
-        for ignore in ignores:
-          if email.find(ignore) > -1:
-            skip = True
-        if not skip:
-          if email not in emails.keys():
-            added += 1
-            try:
-              emails[email] = {'name':from_user['name'],'count':1}
-            except:
-              emails[email] = {'name':'','count':1}
+      for address_key in address_keys:
+        try:
+          if address_key == 'from':
+            users = [message.addresses[address_key]]
           else:
-            emails[email]['count'] += 1
-      except:
-        pass
+            users = message.addresses[address_key]
+          for user in users:
+            email = user['email']
+            skip = False
+            for ignore in ignores:
+              if email.find(ignore) > -1:
+                skip = True
+            if not skip:
+              if email not in emails.keys():
+                added += 1
+                try:
+                  emails[email] = {'name':user['name'],'count':1}
+                except:
+                  emails[email] = {'name':'','count':1}
+              else:
+                emails[email]['count'] += 1
+        except:
+          pass
+
     print "page %s added %s email address" % (page, added)
     offset += 100
     if len(messages) < 100:
