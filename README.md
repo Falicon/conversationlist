@@ -18,6 +18,4 @@ This script simply builds a csv file of any email address you've interacted with
 
 You will most likely want to scrub it for any known bad addresses or email lists that may slip through and de-dup it for those who use multiple email addresses when interacting with you.
 
-#### Note
-
-This script relies on the contextio api and can only collect email addresses from the emails that you have granted them access to and that they've then been able to index. It does not represent a complete history of your email activity (i.e. it won't include things you've deleted or most likely anything from a spam folder).
+**Note:** This script relies on the contextio api and can only collect email addresses from the emails that you have granted them access to and that they've then been able to index. It does not represent a complete history of your email activity (i.e. it won't include things you've deleted or most likely anything from a spam folder).
