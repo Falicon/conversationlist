@@ -3,14 +3,15 @@ Open source version of email address collection script.
 
 ## Requirements & installation
 
-- A context.io 2.0 api account ( https://context.io/ )
-- The contextio python library ( pip install contextio )
-- The python csv library ( pip install csv )
+1. A context.io 2.0 api account ( https://context.io/ )
+2. An account auth'ed with the context.io 2.0 api
+3. The contextio python library ( pip install contextio )
+4. The python csv library ( pip install csv )
 
 ## Usage
 
-- Edit the build_email_list.py script configuration section to contain your credentials
-- Run python build_email_list.py (if all goes well it will report as it builds the list and the final result will be the creation of a emails.csv file)
+1. Edit the build_email_list.py script configuration section to contain your credentials
+2. Run python build_email_list.py (if all goes well it will report as it builds the list and the final result will be the creation of a emails.csv file)
 
 ### After completion
 
