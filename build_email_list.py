@@ -13,6 +13,8 @@ ignores = [
   'admin','no-reply','noreply',
   'service','notifications'
 ]
+# the max size to allow an email address
+email_length_limit = 60
 # the address fields you want to grab emails from
 address_keys = ['to','cc','bcc','from']
 
@@ -68,7 +70,8 @@ with open('emails.csv', 'wb') as csvfile:
   emailwriter.writerow(fieldnames)
   for email in sorted(emails.iteritems(), key=lambda (x, y): y['count']):
     try:
-      emailwriter.writerow([email[0], email[1]['name'], email[1]['count']])
+      if len(email[0]) < email_length_limit:
+        emailwriter.writerow([email[0], email[1]['name'], email[1]['count']])
     except:
       pass
 
