@@ -1,5 +1,5 @@
 # conversationlist
-Open source version of email address collection script. 
+Open source version of email address collection script that powers the core of the https://www.conversationlist.com service (for additional power features, options, and more details please see the Conversation List service). 
 
 ## Requirements & installation
 
